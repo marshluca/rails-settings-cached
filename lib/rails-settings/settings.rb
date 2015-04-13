@@ -8,6 +8,9 @@ module RailsSettings
     cattr_accessor :defaults
     @@defaults = {}.with_indifferent_access
 
+    # Protect attributes from mass-assignment in ActiveRecord models
+    attr_accessible :var if defined?(ProtectedAttributes)
+
     # Support old plugin
     if defined?(SettingsDefaults::DEFAULTS)
       @@defaults = SettingsDefaults::DEFAULTS.with_indifferent_access
